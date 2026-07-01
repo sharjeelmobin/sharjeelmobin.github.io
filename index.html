@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharjeel Mobin — AI Engineer & Full-Stack Developer</title>
+    <meta name="description" content="Portfolio and Resume of Sharjeel Mobin - AI Engineer, Full-Stack Developer, and Team Lead.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #08080a;
+            --bg-elev: #121215;
+            --card: #1c1c20;
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #f5f5f7;
+            --muted: #999999;
+            --accent: #00ff9d;
+            --accent-2: #b794f4;
+            --accent-3: #60a5fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smappearing-smooth: antialiased;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Gradient Blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            top: -200px;
+            left: -200px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-2);
+            bottom: -100px;
+            right: -100px;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(8, 8, 10, 0.7);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 9rem);
+            font-weight: 800;
+            line-height: 0.9;
+            background: linear-gradient(180deg, #fff 0%, #fff 40%, #666 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated Role Text */
+        .role-container {
+            height: 2.5rem;
+            overflow: hidden;
+            display: inline-flex;
+            flex-direction: column;
+        }
+
+        .role-list {
+            animation: cycleRoles 9s infinite;
+        }
+
+        @keyframes cycleRoles {
+            0%, 31% { transform: translateY(0); }
+            33%, 64% { transform: translateY(-2.5rem); }
+            66%, 97% { transform: translateY(-5rem); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            box-shadow: 0 0 40px rgba(0, 255, 157, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-tems: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Card Styles */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 255, 157, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tech Stack Pills */
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tech-pill:hover {
+            background: rgba(0, 255, 157, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+}
+
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        /* Project Cards */
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: rgba(0, 255, 157, 0.3);
+            transform: translateY(-6px);
+        }
+
+        .project-card .glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 157, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .project-card:hover .glow {
+            opacity: 1;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg);
+            z-index: 99;
+            transition: right 0.4s ease;
+            padding-top: 6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Skill Bars */
+        .skill-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-3));
+            border-radius: 999px;
+            width: 0;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Magnetic Effect Cursor */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            mix-blend-mode: difference;
+        }
+
+        @media (min-width: 768px) {
+            .cursor {
+                display: block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .cursor {
+                display: none;
+            }
+        }
+
+        .cursor.expand {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 157, 0.3);
+        }
+
+        /* Responsive Timeline */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+            .timeline-dot {
+                left: 20px;
+            }
+            .timeline-content {
+                width: 100% !important;
+                padding-left: 50px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        body, html {
+            overflow-x: hidden;
+        }
+        
+        /* Gradient Text Utility */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-3) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Marquee */
+        .marquee {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            gap: 3rem;
+        }
+        
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            gap: 3rem;
+            padding-right: 3rem;
+            animation: scroll 40s linear infinite;
+        }
+        
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+        }
+
+    </style>
+</head>
+<body class="relative">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Background Elements -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Navigation -->
+    <nav class="px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#home" class="font-display text-xl font-bold flex items-center gap-2">
+                <span class="w-3 h-3 bg-[var(--accent)] rounded-full animate-pulse"></span>
+                Sharjeel<span class="text-[var(--accent)]">.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm">
+                <a href="#about" class="nav-link text-gray-400">About</a>
+                <a href="#experience" class="nav-link text-gray-400">Experience</a>
+                <a href="#projects" class="nav-link text-gray-400">Projects</a>
+                <a href="#skills" class="nav-link text-gray-400">Skills</a>
+                <a href="https://www.linkedin.com/in/sharjeel-mobin/" target="_blank" class="px-4 py-2 border border-[var(--border)] rounded-full hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Get in Touch</a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+        <a href="#about" class="text-2xl">About</a>
+        <a href="#experience" class="text-2xl">Experience</a>
+        <a href="#projects" class="text-2xl">Projects</a>
+        <a href="#skills" class="text-2xl">Skills</a>
+        <a href="https://www.linkedin.com/in/sharjeel-mobin/" target="_blank" class="text-2xl text-[var(--accent)]">Get in Touch</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero px-6 pt-32 pb-20">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="flex flex-col gap-8">
+                <div class="reveal flex items-center gap-4">
+                    <div class="w-12 h-px bg-[var(--accent)]"></div>
+                    <span class="font-mono text-sm text-[var(--accent)]">AVAILABLE FOR WORK</span>
+                </div>
+
+                <h1 class="hero-title font-display reveal">
+                    Sharjeel<br>Mobin.
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-4 reveal">
+                    <div class="font-mono text-lg md:text-xl text-gray-400">
+                        <span class="text-[var(--accent)]">></span> I'm a
+                        <div class="role-container inline-block align-middle ml-2">
+                            <div class="role-list">
+                                <div class="h-10 flex items-center text-white">AI Engineer</div>
+                                <div class="h-10 flex items-center text-white">Full-Stack Dev</div>
+                                <div class="h-10 flex items-center text-white">Team Lead</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-gray-400 text-lg max-w-xl reveal">
+                    Computer Science undergraduate blending AI engineering with full-stack development to build scalable, business-driven digital solutions. Currently leading web application projects at Digital TechsForge.
+                </p>
+
+                <div class="flex flex-wrap gap-4 reveal">
+                    <a href="#projects" class="btn-primary">
+                        View My Work <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="mailto:sharjeelmobin72@gmail.com" class="btn-secondary">
+                        <i class="far fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator text-xs font-mono uppercase">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Marquee Divider -->
+    <div class="py-8 border-y border-[var(--border)] overflow-hidden bg-[var(--bg-elev)] relative z-10">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="font-display text-3xl text-gray-700">AI ENGINEERING</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">FULL-STACK DEV</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">TEAM LEADERSHIP</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">MACHINE LEARNING</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">PROJECT MANAGEMENT</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span class="font-display text-3xl text-gray-700">AI ENGINEERING</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">FULL-STACK DEV</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">TEAM LEADERSHIP</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">MACHINE LEARNING</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+                <span class="font-display text-3xl text-gray-700">PROJECT MANAGEMENT</span>
+                <span class="font-display text-3xl text-[var(--accent)]">★</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-5 reveal">
+                    <span class="font-mono text-sm text-[var(--accent)]">// ABOUT ME</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mt-4">Designing the future with AI & Web Tech.</h2>
+                </div>
+                <div class="md:col-span-7 reveal">
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Highly motivated Computer Science undergraduate with hands-on experience in full-stack web development, AI engineering, automation, project leadership, and client collaboration. Currently serving as Senior Web Developer / Team Lead at Digital TechsForge, where I oversee the development and delivery of high-performance web applications and digital solutions.
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed mt-4">
+                        Known for combining strong technical expertise with effective team management and problem-solving skills to ensure scalable, efficient, and business-driven outcomes.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="border-l-2 border-[var(--accent)] pl-4">
+                            <h3 class="text-3xl font-display font-bold">3+</h3>
+                            <p class="text-gray-500 text-sm">Years Experience</p>
+                        </div>
+                        <div class="border-l-2 border-[var(--accent)] pl-4">
+                            <h3 class="text-3xl font-display font-bold">7+</h3>
+                            <p class="text-gray-500 text-sm">Projects Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="font-mono text-sm text-[var(--accent)]">// CAREER PATH</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mt-4">Professional Experience</h2>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line"></div>
+
+                <!-- Item 1 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right">
+                            <span class="font-mono text-sm text-[var(--accent)]">Jul 2024 – Present</span>
+                            <h3 class="font-display text-2xl font-bold mt-2">Senior Developer / Team Lead</h3>
+                            <p class="text-gray-500">Digital TechsForge</p>
+                            <p class="text-gray-500 text-sm">Karachi, PK</p>
+                        </div>
+                        <div class="timeline-content md:w-1/2 md:pl-12">
+                            <ul class="space-y-3 text-gray-400">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Lead design, development, and deployment of scalable web applications using modern frameworks.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Collaborate with clients to gather requirements and implement tailored web solutions aligned with business goals.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Supervise and mentor cross-functional teams, ensuring agile practices and project timelines.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Oversee full project lifecycles including architecture, sprint planning, testing, and optimization.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right">
+                            <span class="font-mono text-sm text-[var(--accent)]">Mar 2023 – Jul 2024</span>
+                            <h3 class="font-display text-2xl font-bold mt-2">Web Developer</h3>
+                            <p class="text-gray-500">Luavo Tech</p>
+                            <p class="text-gray-500 text-sm">Karachi, PK</p>
+                        </div>
+                        <div class="timeline-content md:w-1/2 md:pl-12">
+                            <ul class="space-y-3 text-gray-400">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Designed and developed responsive websites using WordPress, Shopify, and custom stacks (PHP, MySQL, JS).</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Collaborated with clients to transform requirements into technical specifications.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Built frontend (HTML, CSS, JS) and backend (PHP, MySQL, APIs) systems focusing on performance.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Conducted system testing, debugging, and CMS training sessions for clients.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right">
+                            <span class="font-mono text-sm text-[var(--accent)]">Oct 2022 – Feb 2023</span>
+                            <h3 class="font-display text-2xl font-bold mt-2">Sales Representative</h3>
+                            <p class="text-gray-500">MBE Canada</p>
+                            <p class="text-gray-500 text-sm">Karachi, PK</p>
+                        </div>
+                        <div class="timeline-content md:w-1/2 md:pl-12">
+                            <ul class="space-y-3 text-gray-400">
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Generated B2B sales leads and converted opportunities through consultative selling.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Leveraged CRM (Sales Pro) to track interactions and monitor pipelines.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Coordinated with software and operations teams to align client requirements with solutions.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fas fa-circle-notch text-[var(--accent)] text-xs mt-1.5"></i>
+                                    <span>Strengthened communication, negotiation, and business analysis skills.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 reveal">
+                <div>
+                    <span class="font-mono text-sm text-[var(--accent)]">// FEATURED WORK</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mt-4">AI & Software Projects</h2>
+                </div>
+                <p class="text-gray-400 mt-4 md:mt-0 max-w-md">A selection of projects spanning artificial intelligence, machine learning, and full-stack development.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">AI / ML</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Malaria Detection System</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">ML and DL model to detect malaria from blood cell images using CNNs for high-accuracy classification.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">ML</span>
+                        <span class="tech-pill">CNN</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-lungs-virus"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">AI / DL</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Pneumonia Detection System</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Deep learning diagnostic tool to detect pneumonia from chest X-ray images using CNN architectures.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Deep Learning</span>
+                        <span class="tech-pill">CNN</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Agentic AI</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Autonomous COO System</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Agentic AI system simulating a COO role, automating strategic decision-making workflows using LLMs via Ollama.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">LLM</span>
+                        <span class="tech-pill">Ollama</span>
+                        <span class="tech-pill">Prompt Eng.</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">ML / Web</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Restaurant Recommendation</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Intelligent recommendation system personalizing suggestions based on user preferences and feedback.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Streamlit</span>
+                        <span class="tech-pill">ML</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Web App</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Attendance Management</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Web-based solution for tracking employee attendance with database integration and report generation.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">PHP</span>
+                        <span class="tech-pill">MySQL</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card reveal">
+                    <div class="glow"></div>
+                    <div class="flex justify-between items-start mb-6 relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] text-xl">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">Desktop</span>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-2 relative z-10">Hotel Management System</h3>
+                    <p class="text-gray-400 text-sm mb-6 relative z-10">Desktop application for managing room bookings, customer records, and billing operations efficiently.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="font-mono text-sm text-[var(--accent)]">// TECHNICAL EXPERTISE</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold mt-4">Skills & Tech Stack</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">AI / ML & Automation</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">Machine Learning</span>
+                        <span class="tech-pill">Deep Learning</span>
+                        <span class="tech-pill">LLMs</span>
+                        <span class="tech-pill">Agentic AI</span>
+                        <span class="tech-pill">Prompt Engineering</span>
+                        <span class="tech-pill">Ollama</span>
+                        <span class="tech-pill">NLP</span>
+                        <span class="tech-pill">Python</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">Backend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">PHP</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">PhpMyAdmin</span>
+                        <span class="tech-pill">OOP</span>
+                        <span class="tech-pill">Git</span>
+                        <span class="tech-pill">Python</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-window-restore"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">Frontend Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">HTML5</span>
+                        <span class="tech-pill">CSS3</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">Responsive Design</span>
+                        <span class="tech-pill">UI/UX Implementation</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-cart-plus"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">CMS Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">WordPress</span>
+                        <span class="tech-pill">Shopify</span>
+                        <span class="tech-pill">Plugins</span>
+                        <span class="tech-pill">Backup/Restore</span>
+                        <span class="tech-pill">Deployment</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 5 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">Business & Marketing</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">B2B Sales</span>
+                        <span class="tech-pill">Lead Generation</span>
+                        <span class="tech-pill">Client Relations</span>
+                        <span class="tech-pill">Digital Strategy</span>
+                        <span class="tech-pill">Affiliate Marketing</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 6 -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="font-display text-xl font-bold">Project & Soft Skills</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-pill">Agile Methodologies</span>
+                        <span class="tech-pill">Team Management</span>
+                        <span class="tech-pill">Quality Assurance</span>
+                        <span class="tech-pill">Problem Solving</span>
+                        <span class="tech-pill">Analytical Thinking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications & Education -->
+            <div class="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div class="reveal">
+                    <h3 class="font-display text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="w-10 h-px bg-[var(--accent)]"></span> Education
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="border-l border-[var(--border)] pl-6 pb-6">
+                            <span class="font-mono text-xs text-[var(--accent)]">ONGOING</span>
+                            <h4 class="text-lg font-bold mt-1">B.S. in Computer Science</h4>
+                            <p class="text-gray-400">Iqra University — Karachi, Pakistan</p>
+                        </div>
+                        <div class="border-l border-[var(--border)] pl-6 pb-6">
+                            <span class="font-mono text-xs text-gray-500">COMPLETED</span>
+                            <h4 class="text-lg font-bold mt-1">Intermediate in Pre-Engineering</h4>
+                            <p class="text-gray-400">Govt. Degree College Gulshan-e-Iqbal</p>
+                        </div>
+                        <div class="border-l border-[var(--border)] pl-6">
+                            <span class="font-mono text-xs text-gray-500">COMPLETED</span>
+                            <h4 class="text-lg font-bold mt-1">Matriculation in Science</h4>
+                            <p class="text-gray-400">S.M Public Academy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="reveal">
+                    <h3 class="font-display text-2xl font-bold mb-8 flex items-center gap-3">
+                        <span class="w-10 h-px bg-[var(--accent)]"></span> Certificates
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="card p-5 flex items-center gap-4 hover:border-[var(--accent)]/30 cursor-default">
+                            <i class="fas fa-certificate text-[var(--accent)] text-2xl"></i>
+                            <div>
+                                <h4 class="font-bold">Python for Data Science, AI & Development</h4>
+                                <p class="text-gray-500 text-sm">IBM</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-center gap-4 hover:border-[var(--accent)]/30 cursor-default">
+                            <i class="fas fa-certificate text-[var(--accent)] text-2xl"></i>
+                            <div>
+                                <h4 class="font-bold">Building AI Agents: Automation and NLP Foundations</h4>
+                                <p class="text-gray-500 text-sm">Coursera</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-center gap-4 hover:border-[var(--accent)]/30 cursor-default">
+                            <i class="fas fa-certificate text-[var(--accent)] text-2xl"></i>
+                            <div>
+                                <h4 class="font-bold">Git Essential Training</h4>
+                                <p class="text-gray-500 text-sm">LinkedIn Learning</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-center gap-4 hover:border-[var(--accent)]/30 cursor-default">
+                            <i class="fas fa-certificate text-[var(--accent)] text-2xl"></i>
+                            <div>
+                                <h4 class="font-bold">Increase Your Flexible Thinking Skills</h4>
+                                <p class="text-gray-500 text-sm">LinkedIn Learning</p>
+                            </div>
+                        </div>
+                        <div class="card p-5 flex items-center gap-4 hover:border-[var(--accent)]/30 cursor-default">
+                            <i class="fas fa-certificate text-[var(--accent)] text-2xl"></i>
+                            <div>
+                                <h4 class="font-bold">JavaScript on the Go: Objects</h4>
+                                <p class="text-gray-500 text-sm">LinkedIn Learning</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="reveal">
+                <span class="font-mono text-sm text-[var(--accent)]">// GET IN TOUCH</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold mt-4 mb-8">
+                    Let's build something<br>
+                    <span class="gradient-text">amazing together.</span>
+                </h2>
+                <p class="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
+                    I'm currently open to new opportunities and collaborations. Feel free to reach out!
+                </p>
+                <a href="mailto:sharjeelmobin72@gmail.com" class="btn-primary text-lg">
+                    <i class="far fa-envelope"></i> Say Hello
+                </a>
+                
+                <div class="flex justify-center gap-6 mt-12">
+                    <a href="https://www.linkedin.com/in/sharjeel-mobin/" target="_blank" class="w-14 h-14 rounded-full border border-[var(--border)] flex items-center justify-center text-xl text-gray-400 hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/sharjeelmobin" target="_blank" class="w-14 h-14 rounded-full border border-[var(--border)] flex items-center justify-center text-xl text-gray-400 hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="tel:+923452104416" class="w-14 h-14 rounded-full border border-[var(--border)] flex items-center justify-center text-xl text-gray-400 hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border)] py-8 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-gray-500 text-sm">© 2024 Sharjeel Mobin. All rights reserved.</p>
+            <p class="text-gray-500 text-sm font-mono">Designed & Built with <i class="fas fa-heart text-[var(--accent)]"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Reveal on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .card, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+        });
+
+        // Background Canvas Animation (Matrix-like particles)
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        function initParticles() {
+            particles = [];
+            const count = Math.floor((canvas.width * canvas.height) / 15000);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.2) * 0.3,
+                    vy: (Math.random() - 0.2) * 0.3,
+                    size: Math.random() * 1.5 + 0.5
+                });
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 255, 157, 0.4)';
+                ctx.fill();
+            });
+            
+            // Connect particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 255, 157, ${0.15 * (1 - distance / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+        
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+    </script>
+</body>
+</html>
